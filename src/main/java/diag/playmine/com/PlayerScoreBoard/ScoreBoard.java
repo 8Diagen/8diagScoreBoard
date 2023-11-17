@@ -24,8 +24,7 @@ public class ScoreBoard {
     public static List<Score> scores() {
         return List.of(balance, exp, level);
     }
-    public static String getPath(Plugin plugin, String uuid){
-        Bukkit.getPlayer("9Diagen").sendMessage("9");
+    public static String getPath(Plugin plugin, String uuid) {
         return plugin.getDataFolder().toString().substring(0, 8) + "Players/" + uuid + ".json";
     }
 
