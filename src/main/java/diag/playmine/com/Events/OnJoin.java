@@ -48,8 +48,7 @@ public class OnJoin implements Listener {
         String path = ScoreBoard.getPath(AScoreBoard.getPlugin(), p.getUniqueId() + "");
         File f = new File(path);
         if (!f.exists()){
-            PlayerInfo playerInfo = new PlayerInfo();
-            writeData(p, path, playerInfo);
+            writeData(p, path);
         }
         new ScoreBoard.sendActionBarMessage(p);
         Plugin plugin = Bukkit.getPluginManager().getPlugin("aScoreBoard");
@@ -57,7 +56,8 @@ public class OnJoin implements Listener {
         p.setScoreboard(ScoreBoard.newScoreBoard(path));
     }
 
-    public void writeData(Player player, String path, PlayerInfo playerInfo) throws IOException {
+    public void writeData(Player player, String path) throws IOException {
+        PlayerInfo playerInfo = new PlayerInfo();
         ObjectMapper objectMapper = new ObjectMapper();
         playerInfo.setBalance(AScoreBoard.getPlugin().getConfig().getString("startbalance"));
         playerInfo.setPlayerName(Objects.requireNonNull(player.getPlayer()).getName());
