@@ -19,8 +19,8 @@ public final class AScoreBoard extends JavaPlugin {
         plugin = this;
         System.out.println("aScoreBoard plugin has been successfully loaded");
         saveDefaultConfig();
-        initialize();
         Color.config = (YamlConfiguration) getConfig();
+        initialize();
     }
 
     public void onDisable() {
