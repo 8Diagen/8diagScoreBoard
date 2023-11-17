@@ -1,6 +1,8 @@
 package diag.playmine.com;
 
+import diag.playmine.acolor.Color.Color;
 import diag.playmine.com.Events.OnJoin;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public final class AScoreBoard extends JavaPlugin {
@@ -18,6 +20,7 @@ public final class AScoreBoard extends JavaPlugin {
         System.out.println("aScoreBoard plugin has been successfully loaded");
         saveDefaultConfig();
         initialize();
+        Color.config = (YamlConfiguration) getConfig();
     }
 
     public void onDisable() {

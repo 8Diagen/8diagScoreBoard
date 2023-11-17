@@ -1,7 +1,7 @@
 package diag.playmine.com.PlayerScoreBoard;
 
+import diag.playmine.acolor.Color.Color;
 import diag.playmine.com.AScoreBoard;
-import diag.playmine.com.Color.Color;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -49,14 +49,12 @@ public class ScoreBoard {
     }
 
     public static void updateScoreBoardData(String path) throws IOException, JSONException {
-        Color c = new Color(config);
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
-        level = objective.getScore(c.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getString("playerLevel"))}));
-        exp = objective.getScore(c.message("scoreboard.currentExp", new String[]{convert(jsonObject.getString("currentExp"))}));
-        balance = objective.getScore(c.message("scoreboard.balance", new String[]{convert(jsonObject.getString("balance"))}));
-
+        level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getString("playerLevel"))}));
+        exp = objective.getScore(Color.message("scoreboard.currentExp", new String[]{convert(jsonObject.getString("currentExp"))}));
+        balance = objective.getScore(Color.message("scoreboard.balance", new String[]{convert(jsonObject.getString("balance"))}));
     }
 
     public static double getBalance(String path) throws IOException, JSONException {
