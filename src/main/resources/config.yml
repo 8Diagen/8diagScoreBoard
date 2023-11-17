@@ -1,3 +1,4 @@
+startbalance: "0"
 scoreboard:
   playerLevel: "&aТекущий уровень: &f{0}"
   currentExp: "&aТекущий опыт: &f{0}"
