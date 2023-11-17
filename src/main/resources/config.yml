@@ -1,0 +1,4 @@
+scoreboard:
+  playerLevel: "&aТекущий уровень: &f{0}"
+  currentExp: "&aТекущий опыт: &f{0}"
+  balance: "&aТекущий баланс: &f{0}"

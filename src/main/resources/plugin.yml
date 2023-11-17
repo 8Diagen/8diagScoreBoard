@@ -1,0 +1,4 @@
+name: aScoreBoard
+version: '${project.version}'
+main: diag.playmine.com.AScoreBoard
+api-version: '1.20'
