@@ -24,7 +24,7 @@ public class OnJoin implements Listener {
         public String playerName;
         public Double balance;
         public Double currentExp = 0d;
-        public Double playerLevel = 0d;
+        public Integer playerLevel = 0;
 
         public String id;
 
