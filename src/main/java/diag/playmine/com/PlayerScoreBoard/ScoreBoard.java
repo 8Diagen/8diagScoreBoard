@@ -78,10 +78,12 @@ public class ScoreBoard {
 
     public static String convert(String num) {
         if (num.contains("E")) {
+            num = num.replace(".", "");
             int iterations = Integer.parseInt(num.substring(num.indexOf("E") + 1));
-            char c = num.charAt(2);
-            num = num.substring(0, 1);
-            num = num + String.valueOf(c).repeat(iterations);
+            num = num.substring(0, num.indexOf("E"));
+            if (num.length() - 1 != iterations){
+                num += "0".repeat(iterations - num.length() + 1);
+            }
         }
         else if (num.contains(".")) num = num.substring(0, num.indexOf("."));
         int numLength = num.length();
