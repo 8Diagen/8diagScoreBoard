@@ -22,13 +22,13 @@ public class OnJoin implements Listener {
 
     public static class PlayerInfo {
         public String playerName;
-        public String balance;
-        public String currentExp = "0";
-        public String playerLevel = "0";
+        public Double balance;
+        public Double currentExp = 0d;
+        public Double playerLevel = 0d;
 
         public String id;
 
-        public void setBalance(String balance) {
+        public void setBalance(Double balance) {
             this.balance = balance;
         }
 
@@ -59,7 +59,7 @@ public class OnJoin implements Listener {
     public void writeData(Player player, String path) throws IOException {
         PlayerInfo playerInfo = new PlayerInfo();
         ObjectMapper objectMapper = new ObjectMapper();
-        playerInfo.setBalance(AScoreBoard.getPlugin().getConfig().getString("startbalance"));
+        playerInfo.setBalance(Double.parseDouble(Objects.requireNonNull(AScoreBoard.getPlugin().getConfig().getString("startbalance"))));
         playerInfo.setPlayerName(Objects.requireNonNull(player.getPlayer()).getName());
         playerInfo.setId(player.getUniqueId().toString());
         String result = objectMapper.writeValueAsString(playerInfo);

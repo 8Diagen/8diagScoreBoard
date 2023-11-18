@@ -52,7 +52,7 @@ public class ScoreBoard {
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
-        level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getString("playerLevel"))}));
+        level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getDouble("playerLevel") + "")}));
         exp = objective.getScore(Color.message("scoreboard.currentExp", new String[]{convert(jsonObject.getDouble("currentExp") + "")}));
         balance = objective.getScore(Color.message("scoreboard.balance", new String[]{convert(jsonObject.getDouble("balance") + "")}));
     }
