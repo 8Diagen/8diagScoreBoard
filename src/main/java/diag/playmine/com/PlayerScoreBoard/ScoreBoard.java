@@ -21,6 +21,7 @@ public class ScoreBoard {
     public static Score balance;
     public static Objective objective;
     public static Scoreboard board;
+
     public static List<Score> scores() {
         return List.of(balance, exp, level);
     }
@@ -28,11 +29,9 @@ public class ScoreBoard {
         return plugin.getDataFolder().toString().substring(0, 8) + "Players/" + uuid + ".json";
     }
 
-    public ScoreBoard(YamlConfiguration config) {
-        ScoreBoard.config = config;
+    public static void setColorConfig() {
+        Color.config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
     }
-
-    public static YamlConfiguration config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
 
     public static Scoreboard newScoreBoard(String path) throws JSONException, IOException {
         ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
