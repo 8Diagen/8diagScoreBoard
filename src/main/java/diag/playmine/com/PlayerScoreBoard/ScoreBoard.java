@@ -53,8 +53,8 @@ public class ScoreBoard {
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
         level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getString("playerLevel"))}));
-        exp = objective.getScore(Color.message("scoreboard.currentExp", new String[]{convert(jsonObject.getString("currentExp"))}));
-        balance = objective.getScore(Color.message("scoreboard.balance", new String[]{convert(jsonObject.getString("balance"))}));
+        exp = objective.getScore(Color.message("scoreboard.currentExp", new String[]{convert(jsonObject.getDouble("currentExp") + "")}));
+        balance = objective.getScore(Color.message("scoreboard.balance", new String[]{convert(jsonObject.getDouble("balance") + "")}));
     }
 
     public static double getBalance(String path) throws IOException, JSONException {
@@ -81,7 +81,7 @@ public class ScoreBoard {
     public static Map<Integer, Character> symbols = Map.of(3, 'K',6, 'M',9, 'B');
 
     public static String convert(String num) {
-        num = num.replace(".0", "");
+        if (num.contains(".")) num = num.substring(0, num.indexOf("."));
         int numLength = num.length();
         for (int i = 1; i < 4; i++) {
             Object[] ints = symbols.keySet().toArray();
