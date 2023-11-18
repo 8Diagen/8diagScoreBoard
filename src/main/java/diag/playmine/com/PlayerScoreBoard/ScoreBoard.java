@@ -77,7 +77,13 @@ public class ScoreBoard {
     public static Map<Integer, Character> symbols = Map.of(3, 'K',6, 'M',9, 'B');
 
     public static String convert(String num) {
-        if (num.contains(".")) num = num.substring(0, num.indexOf("."));
+        if (num.contains("E")) {
+            int iterations = Integer.parseInt(num.substring(num.indexOf("E") + 1));
+            char c = num.charAt(2);
+            num = num.substring(0, 1);
+            num = num + String.valueOf(c).repeat(iterations);
+        }
+        else if (num.contains(".")) num = num.substring(0, num.indexOf("."));
         int numLength = num.length();
         for (int i = 1; i < 4; i++) {
             Object[] ints = symbols.keySet().toArray();
