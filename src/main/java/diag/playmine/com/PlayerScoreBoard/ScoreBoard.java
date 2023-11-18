@@ -1,8 +1,8 @@
 package diag.playmine.com.PlayerScoreBoard;
 
-import diag.playmine.acolor.Color.Color;
 import diag.playmine.com.AScoreBoard;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
@@ -12,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.text.MessageFormat;
 import java.util.*;
 
 public class ScoreBoard {
@@ -27,10 +28,6 @@ public class ScoreBoard {
     }
     public static String getPath(Plugin plugin, String uuid) {
         return plugin.getDataFolder().toString().substring(0, 8) + "Players/" + uuid + ".json";
-    }
-
-    public static void setColorConfig() {
-        Color.config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
     }
 
     public static Scoreboard newScoreBoard(String path) throws JSONException, IOException {
@@ -108,6 +105,21 @@ public class ScoreBoard {
         @Override
         public void run() {
             p.sendTitle("\uE001", "", 0, 100000, 0);
+        }
+    }
+
+    public static class Color {
+        public static YamlConfiguration config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
+
+        public static String c(String text) {
+            return ChatColor.translateAlternateColorCodes('&', text);
+        }
+
+        public static String message(String a, String[] args) {
+            return MessageFormat.format(c(config.getString(a)), args);
+        }
+        public static String jsonMessage(String a, String[] args) {
+            return String.format(c(config.getString(a)), args);
         }
     }
 }
