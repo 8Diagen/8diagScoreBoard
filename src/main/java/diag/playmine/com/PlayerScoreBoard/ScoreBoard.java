@@ -64,9 +64,7 @@ public class ScoreBoard {
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
-        double bal = jsonObject.getDouble("balance");
-        bal -= value;
-        jsonObject.put("balance", bal);
+        jsonObject.put("balance", value);
         FileWriter fw = new FileWriter(path);
         BufferedWriter bw = new BufferedWriter(fw);
         bw.write(jsonObject.toString());
@@ -85,7 +83,8 @@ public class ScoreBoard {
                 num += "0".repeat(iterations - num.length() + 1);
             }
         }
-        else if (num.contains(".")) num = num.substring(0, num.indexOf("."));
+        else if (num.contains("."))
+            num = num.substring(0, num.indexOf("."));
         int numLength = num.length();
         for (int i = 1; i < 4; i++) {
             Object[] ints = symbols.keySet().toArray();
@@ -93,7 +92,8 @@ public class ScoreBoard {
             int index = (Integer) ints[ints.length - i];
             if (numLength > index) {
                 num = num.substring(0, num.length() - index) + "." + num.charAt(num.length() - index) + symbols.get(index);
-                if (num.charAt(num.indexOf('.') + 1) == '0') num = num.replace(".0", "");
+                if (num.charAt(num.indexOf('.') + 1) == '0')
+                    num = num.replace(".0", "");
                 break;
             }
         }
