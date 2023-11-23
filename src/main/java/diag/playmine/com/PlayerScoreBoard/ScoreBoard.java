@@ -20,11 +20,13 @@ public class ScoreBoard {
     public static Score level;
     public static Score exp;
     public static Score balance;
+    public static Score expProgress;
     public static Objective objective;
+    public static String expProgressScore = "▰▰▰▰▰▰▰▰▰▰";
     public static Scoreboard board;
 
     public static List<Score> scores() {
-        return List.of(balance, exp, level);
+        return List.of(balance, exp, level, expProgress);
     }
     public static String getPath(Plugin plugin, String uuid) {
         return plugin.getDataFolder().toString().substring(0, 8) + "Players/" + uuid + ".json";
@@ -38,9 +40,13 @@ public class ScoreBoard {
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("Статистика");
         updateScoreBoardData(path);
-        for (int i = scores().size(); i > 0; i--){
-            scores().get(i - 1).setScore(i);
-        }
+        level.setScore(4);
+        exp.setScore(3);
+        expProgress.setScore(2);
+        balance.setScore(1);
+//        for (int i = scores().size(); i > 0; i--){
+//            scores().get(i - 1).setScore(i);
+//        }
         return board;
     }
 
@@ -48,6 +54,7 @@ public class ScoreBoard {
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
+        expProgress = objective.getScore(expProgressScore);
         level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getInt("playerLevel") + "")}));
         exp = objective.getScore(Color.message("scoreboard.currentExp", new String[]{convert(jsonObject.getDouble("currentExp") + "")}));
         balance = objective.getScore(Color.message("scoreboard.balance", new String[]{convert(jsonObject.getDouble("balance") + "")}));
