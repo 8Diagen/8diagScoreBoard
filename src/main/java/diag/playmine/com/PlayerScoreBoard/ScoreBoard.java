@@ -4,6 +4,8 @@ import diag.playmine.com.AScoreBoard;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -255,6 +257,10 @@ public class ScoreBoard {
             put("level98", 73817244);
             put("level99", 81198970);
             put("level100", 89318869);
+        }};
+
+        public static Map<EntityType, Integer> exp = new HashMap<>(){{
+            put(EntityType.ZOMBIE, 1);
         }};
     }
 }
