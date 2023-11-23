@@ -18,7 +18,6 @@ import java.util.*;
 public class ScoreBoard {
 
     public static Score level;
-    public static Score exp;
     public static Score balance;
     public static Score expNeedScore;
     public static Score expNeedProgress;
