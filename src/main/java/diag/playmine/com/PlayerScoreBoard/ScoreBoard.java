@@ -18,7 +18,6 @@ import java.text.MessageFormat;
 import java.util.*;
 
 public class ScoreBoard {
-/////////////////////////
     public static Score level;
     public static Score balance;
     public static Score expNeedScore;
