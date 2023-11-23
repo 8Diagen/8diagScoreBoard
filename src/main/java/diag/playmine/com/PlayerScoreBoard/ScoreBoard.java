@@ -56,6 +56,7 @@ public class ScoreBoard {
         FileReader fr = new FileReader(path);
         BufferedReader br = new BufferedReader(fr);
         JSONObject jsonObject = new JSONObject(br.readLine());
+        setExpProgress(path);
         expNeedScore = objective.getScore(Color.c(expNeed));
         expNeedProgress = objective.getScore(Color.c(progressExp));
         level = objective.getScore(Color.message("scoreboard.playerLevel", new String[]{convert(jsonObject.getInt("playerLevel") + "")}));
@@ -81,8 +82,13 @@ public class ScoreBoard {
         Objects.requireNonNull(Bukkit.getPlayer(jsonObject.getString("playerName"))).setScoreboard(newScoreBoard(path));
     }
 
-    public static void setExpProgress(double currentExp, double nextLevelExp) {
+    public static void setExpProgress(String path) throws IOException {
         YamlConfiguration config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
+        FileReader fr = new FileReader(path);
+        BufferedReader br = new BufferedReader(fr);
+        JSONObject jsonObject = new JSONObject(br.readLine());
+        double currentExp = jsonObject.getDouble("currentExp");
+        double nextLevelExp = levelsInfo.levels.get("level" + (jsonObject.getInt("playerLevel") + 1));
         double next = nextLevelExp / 100;
         double percent = currentExp / next;
         String strPercent = percent + "";

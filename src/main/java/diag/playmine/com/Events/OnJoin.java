@@ -52,10 +52,6 @@ public class OnJoin implements Listener {
         new ScoreBoard.sendActionBarMessage(p);
         Plugin plugin = Bukkit.getPluginManager().getPlugin("aScoreBoard");
         assert plugin != null;
-        FileReader fr = new FileReader(path);
-        BufferedReader br = new BufferedReader(fr);
-        JSONObject jsonObject = new JSONObject(br.readLine());
-        ScoreBoard.setExpProgress(jsonObject.getDouble("currentExp"), ScoreBoard.levelsInfo.levels.get("level" + (jsonObject.getInt("playerLevel") + 1)));
         p.setScoreboard(ScoreBoard.newScoreBoard(path));
     }
 
