@@ -2,7 +2,6 @@ startbalance: "0"
 scoreboard:
   playerLevel: "&aТекущий уровень: &f{0}"
   currentExp: "&aТекущий опыт: &f{0}"
-  progressExp: "&e↳&f &a {greenCubes}{whitecubes}"
   balance: "&aТекущий баланс: &f{0}"
   cubes1color: "&a"
   cubes2color: "&f"
