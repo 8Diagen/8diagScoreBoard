@@ -1,8 +1,6 @@
 package diag.playmine.com.Events;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Objects;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -15,6 +13,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.Plugin;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 public class OnJoin implements Listener {
     public OnJoin() {
@@ -53,6 +52,10 @@ public class OnJoin implements Listener {
         new ScoreBoard.sendActionBarMessage(p);
         Plugin plugin = Bukkit.getPluginManager().getPlugin("aScoreBoard");
         assert plugin != null;
+        FileReader fr = new FileReader(path);
+        BufferedReader br = new BufferedReader(fr);
+        JSONObject jsonObject = new JSONObject(br.readLine());
+        ScoreBoard.setExpProgress(jsonObject.getDouble("currentExp"), ScoreBoard.levelsInfo.levels.get("level" + (jsonObject.getInt("playerLevel") + 1)));
         p.setScoreboard(ScoreBoard.newScoreBoard(path));
     }
 
