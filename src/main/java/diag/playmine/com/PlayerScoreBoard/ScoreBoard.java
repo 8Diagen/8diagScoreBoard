@@ -81,16 +81,17 @@ public class ScoreBoard {
     }
 
     public static void setExpProgress(double currentExp, double nextLevelExp) {
+        YamlConfiguration config = (YamlConfiguration) Objects.requireNonNull(Bukkit.getPluginManager().getPlugin("aScoreBoard")).getConfig();
         double next = nextLevelExp / 100;
         double percent = currentExp / next;
         String strPercent = percent + "";
         strPercent = strPercent.substring(0, strPercent.indexOf(".") + 2);
         int greenCubesCount = Integer.parseInt(strPercent.substring(0, strPercent.indexOf("."))) / 5;
-        String greenCubes = "▰".repeat(greenCubesCount);
-        Bukkit.getPlayer("9Diagen").sendMessage(greenCubesCount + "");
-        String whiteCubes = "▰".repeat(20 - greenCubesCount);
-        whiteCubes = "&f" + whiteCubes;
-        progressExp = "&e↳&f &a" + greenCubes + whiteCubes + " &e⊶ " + strPercent + "%";
+        String cubes = "▰".repeat(20);
+        StringBuilder sb = new StringBuilder(cubes);
+        sb.insert(0, config.getString("scoreboard.cubes1color"));
+        sb.insert(greenCubesCount + 2, config.getString("scoreboard.cubes2color"));
+        progressExp = Color.c(config.getString("scoreboard.progressBarExp")).replace("{cubes}", sb.toString()) .replace("{percent}", strPercent);;
     }
 
     public static Map<Integer, Character> symbols = Map.of(3, 'K',6, 'M',9, 'B');
